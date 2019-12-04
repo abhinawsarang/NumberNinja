@@ -1,3 +1,8 @@
+/**
+ * @project NumberNinja
+ * @authors Sukhpreet Singh Anand, Sagar Khar
+ */
+
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var bcrypt = require('bcrypt');
@@ -9,6 +14,7 @@ var schema = new Schema({
     firstname: {type:String, require:true},
     lastname: {type:String, require:true},
     role: {type:String, require:true},
+    grade: {type:String, require:false},
     creation_dt: {type:Date, require:true}
 });
 

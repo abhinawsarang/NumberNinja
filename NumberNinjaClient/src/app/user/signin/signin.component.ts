@@ -1,7 +1,13 @@
+/**
+ * @project NumberNinja
+ * @author Sukhpreet Singh Anand, Abhinaw Sarang, Saksham Jhawar
+ */
+
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../shared/user.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { async, inject } from '@angular/core/testing';
 
 @Component({
   selector: 'app-signin',
@@ -25,6 +31,8 @@ export class SignInComponent implements OnInit {
       this.userService.userAuthentication(email, password).subscribe((data: any) => {
       localStorage.setItem('userToken', data.token);
       localStorage.setItem('userRole', data.role);
+      localStorage.setItem('userGrade',data.userGrade)
+      localStorage.setItem('userEmail',data.userEmail)
 
       switch(data.role) {
         case this.adminRole:
@@ -37,6 +45,7 @@ export class SignInComponent implements OnInit {
 
         case this.studentRole:
           this.router.navigate(['/student']);
+          
           break;
 
         default:

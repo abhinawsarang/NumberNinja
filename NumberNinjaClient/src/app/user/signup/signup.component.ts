@@ -1,8 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+/**
+ * @project NumberNinja
+ * @author Sukhpreet Singh Anand, Abhinaw Sarang, Sagar Khar, Smit Shah
+ */
+
+import { Component, OnInit, TemplateRef } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { User } from '../../shared/user.model';
 import { UserService } from '../../shared/user.service';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-sign-up',
@@ -14,7 +20,7 @@ export class SignUpComponent implements OnInit {
   emailPattern = "^[a-zA-Z0-9_\\-.]+@[a-zA-Z0-9\\-]+\.[a-zA-Z0-9\\-.]+$";
   confPassword: String = '';
 
-  constructor(private userService: UserService, private toastr: ToastrService) { }
+  constructor(private userService: UserService, private toastr: ToastrService,public dialog: MatDialog) { }
 
   ngOnInit() {
     this.resetForm();
@@ -29,19 +35,24 @@ export class SignUpComponent implements OnInit {
       password: '',
       email: '',
       firstName: '',
-      lastName: ''
+      lastName: '',
+      role: '',
+      grade: ''
     };
   }
 
   OnSubmit(form: NgForm) {
     this.userService.registerUser(this.user)
       .subscribe((data: any) => {
-        if (data.key !== '') {
+        if (data.message === undefined) {
           this.resetForm(form);
           this.toastr.success('User registration successful');
         } else {
-          this.toastr.error('Registration failed');
+          this.toastr.error(data.message);
         }
       });
+  }
+  register(ref: TemplateRef<any>){
+    this.dialog.open(ref);
   }
 }

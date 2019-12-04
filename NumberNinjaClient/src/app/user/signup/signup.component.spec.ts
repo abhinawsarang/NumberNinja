@@ -1,9 +1,13 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+/**
+ * @project NumberNinja
+ * @author Abhinaw Sarang
+ */
 
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { SignUpComponent } from './signup.component';
 import { FormsModule } from '@angular/forms';
 import { UserService } from '../../shared/user.service';
-import { HttpClient, HttpHandler } from '@angular/common/http';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ToastrService } from 'ngx-toastr';
 
 describe('SignUpComponent', () => {
@@ -12,9 +16,9 @@ describe('SignUpComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      providers: [UserService, HttpClient, HttpHandler, ToastrService],
+      providers: [UserService, ToastrService],
       declarations: [ SignUpComponent ],
-      imports: [ FormsModule ],
+      imports: [ FormsModule, HttpClientTestingModule ],
     })
     .compileComponents();
   }));
@@ -28,4 +32,4 @@ describe('SignUpComponent', () => {
   xit('should create', () => {
     expect(component).toBeTruthy();
   });
-});
+}); 

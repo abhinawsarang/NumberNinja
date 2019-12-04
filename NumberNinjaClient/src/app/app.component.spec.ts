@@ -1,7 +1,12 @@
+/**
+ * @project NumberNinja
+ * @author Sukhpreet Singh Anand, Abhinaw Sarang, Saksham Jhawar, Sagar Khar
+ */
+
 import { TestBed, async } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
-import {AdminComponent} from './admin/admin.component';
+import { AdminComponent } from './admin/pending/admin.component';
 import { MatTableModule } from '@angular/material/table';
 import {MatSelectModule } from '@angular/material/select';
 import {ReactiveFormsModule, FormsModule} from '@angular/forms';

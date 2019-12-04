@@ -1,0 +1,43 @@
+<!--
+/**
+ * @project NumberNinja
+ * @authors Sukhpreet Singh Anand, Saksham Jhawar
+ */
+-->
+
+<div>
+        <app-teachertoolbar></app-teachertoolbar>
+</div>
+<div>
+        <button mat-button class="btn btn-info" (click)="addAssignment()">Add Assignment</button>
+</div>
+<mat-table [dataSource]="dataSource" class="matTable">
+        <!--Assignment Name Column -->
+        <ng-container matColumnDef="assignmentname">
+                <mat-header-cell *matHeaderCellDef style="font-family: 'Times New Roman', Times, serif ; font-size: 22px">Assignment </mat-header-cell>
+                <mat-cell *matCellDef="let element" class="hyperlink"> <a [routerLink]="element._id">{{element.name}}</a></mat-cell>
+        </ng-container>
+
+        <!--Deadline Column -->
+        <ng-container matColumnDef="duedate">
+                <mat-header-cell *matHeaderCellDef style="font-family: 'Times New Roman', Times, serif ; font-size: 22px"> Deadline </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.duedate}} </mat-cell>
+        </ng-container>
+
+        <!--Grade Column -->
+        <ng-container matColumnDef="grade">
+                <mat-header-cell *matHeaderCellDef style="font-family: 'Times New Roman', Times, serif ; font-size: 22px"> Grade </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.grade}} </mat-cell>
+        </ng-container>
+
+        <!-- Edit/Delete Column -->
+        <ng-container matColumnDef="action">
+                <mat-header-cell *matHeaderCellDef style="font-family: 'Times New Roman', Times, serif ; font-size: 22px"></mat-header-cell>
+                <mat-cell *matCellDef="let element">
+                        <button mat-button (click)="editAssignment(element)"><mat-icon>edit</mat-icon></button>
+                        <button mat-button (click)="deleteAssignment(element)"><mat-icon>delete</mat-icon></button>
+                </mat-cell>
+        </ng-container>
+        <mat-header-row *matHeaderRowDef="displayedColumns "></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+</mat-table>
